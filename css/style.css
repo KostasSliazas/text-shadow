@@ -226,5 +226,6 @@ input[type=number] {
 
     .export {
         width: 90%;
+        text-align: center;
     }
 }
