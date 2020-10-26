@@ -39,21 +39,24 @@ input[type=color] {
 .color {
     text-align: right;
     position: relative;
-    display: flex;
-    justify-content: center;
     width: 100%;
-    align-items: center;
-    min-height: 48px;
     margin: auto;
-}
-.color label{
-    position: absolute;
+    display: block;
     z-index: 1;
 }
-.color input{
-    position: relative;
+.color label{
     width: 100%;
+    text-align: center;
+    line-height: 48px;
+}
+.color input{
+    position: absolute;
     margin: 0;
+    width: 100%;
+    min-height: 48px;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 .flexrow,
 fieldset {
@@ -64,10 +67,9 @@ fieldset {
     display: flex;
     flex-flow: column;
     line-height: 1;
-    flex-wrap: wrap;
     margin: 0;
-    width: 100%;
-    padding: 0;
+    padding: 4px;
+    position: relative;
 }
 
 .seper {
@@ -76,7 +78,8 @@ fieldset {
     border: 1px solid #aaa;
     padding: 12px;
     grid-template-areas: "control1 control2 colordata""control1 control2 colorlist""control1 button include";
-    gap: 12px
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
 }
 
 .seper>fieldset:nth-child(1) {
@@ -124,7 +127,8 @@ label {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    margin: 0;
 }
 
 input[type=number] {
@@ -150,7 +154,6 @@ input[type=number] {
 }
 
 .radios {
-    display: flex
 }
 
 .bottom {
