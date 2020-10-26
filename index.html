@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text shadow</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="main">
+    <div id="sample-text">This is sample text</div>
+    <div class="seper">
+      <fieldset>
+        <legend>Colors</legend>
+        <div class="color">
+          <label for="color1">background
+            <input type="color" value="#eeeeee" id="color1"></label>
+        </div>
+        <div class="color">
+          <label for="color2">Text
+            <input type="color" value="#aaaaaa" id="color2"></label>
+        </div>
+        <div class="color">
+          <label for="color3">Shadow
+            <input type="color" value="#000000" id="color3"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Shadow positions</legend>
+        <div class="radios">
+          <fieldset id="direction1">
+            <legend>X</legend>
+            <label for="left">left
+              <input id="left" type="radio" value="-1" name="direction1" checked=""></label>
+            <label for="right">right
+              <input id="right" type="radio" value="1" name="direction1"></label>
+            <label for="none1">none
+              <input id="none1" type="radio" value="0" name="direction1"></label>
+          </fieldset>
+          <fieldset id="direction2">
+            <legend>Y</legend>
+            <label for="top">top
+              <input id="top" type="radio" value="-1" name="direction2" checked=""></label>
+            <label for="bottom">bottom
+              <input id="bottom" type="radio" value="1" name="direction2"></label>
+            <label for="none">none
+              <input id="none" type="radio" value="0" name="direction2"></label>
+          </fieldset>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Number of shadows</legend>
+        <input id="num" type="number" value="10" min="1" max="100">
+      </fieldset>
+      <fieldset>
+        <legend>Number of blurriness</legend>
+        <input id="blur" type="number" value="0" min="0" max="100">
+      </fieldset>
+      <button class="nudes button">Show me code</button>
+
+      <div class="include">
+        <label for="bgrnd">including background<input id="bgrnd" type="checkbox"></label>
+        <label for="color">including text color <input id="color" type="checkbox"></label>
+      </div>
+    </div>
+  </div>
+  <div class="export hidden">
+    <div class="inline">
+      <label for="shadow-out" class="center">CSS</label>
+      <input id="shadow-out" type="text"><button class="button" id="copy-text">📋 COPY</button>
+    </div>
+    <button class="nudes bottom button">Hide this</button>
+  </div>
+  <script>
+    ;
+    (function () {
+      //get sample text for changing text-shadow
+      const S_TEXT = document.getElementById("sample-text");
+      const EXPORT = document.querySelector(".export");
+      // const HEX = [1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
+      let color1 = document.getElementById("color1");
+      let color2 = document.getElementById("color2");
+      let color3 = document.getElementById("color3");
+      let shadowOut = document.getElementById("shadow-out");
+      S_TEXT.style.background = color1.value;
+      S_TEXT.style.color = color2.value;
+
+      function getNumberOfShadows() {
+        return Number(document.querySelector("#num").value);
+      }
+
+      function getNumberOfBlur() {
+        return Number(document.querySelector("#blur").value);
+      }
+
+      function copyText(element) {
+        element.select();
+        element.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+      }
+
+      function getCheckedValues() {
+        return document.querySelectorAll("input:checked");
+      }
+
+      function toggleHide(elem) {
+        elem.classList.toggle("hidden")
+      }
+
+      function makeTextString(count, blur) {
+        let color = color3.value || "#000";
+        let [horizontal, vertical] = [...getCheckedValues()];
+        let tempH = Number(horizontal.value);
+        let tempV = Number(vertical.value);
+        let string = "";
+        if (tempH === 0 && tempV === 0) return string = "";
+
+        for (let i = 0; i < count; i++) {
+          if (i) string += ",";
+          string += stringMake(tempH, tempV, blur, color);
+          if (tempH !== 0)(tempH > 0) ? ++tempH : --tempH;
+          if (tempV !== 0)(tempV > 0) ? ++tempV : --tempV;
+        }
+        return string;
+      }
+
+      //make string of shadows
+      function stringMake(f, s, t, c) {
+        return `${f}px ${s}px ${t}px ${c}`;
+      }
+
+      function exported() {
+        let string = "text-shadow: " + makeTextString(getNumberOfShadows(), getNumberOfBlur()) + ";"
+        if (getCheckedValues()[2]) string += "background: " + color1.value + ";";
+        if (getCheckedValues()[3]) string += "color: " + color2.value + ";";
+        shadowOut.value = string;
+      }
+
+      document.addEventListener("change", () => {
+        //add text-shadow to element
+        S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+      });
+
+      color1.addEventListener("input", (e) => S_TEXT.style.background = e.target.value);
+      color2.addEventListener("input", (e) => S_TEXT.style.color = e.target.value);
+      document.querySelectorAll(".nudes").forEach((e) => e.addEventListener("click", () => {
+        toggleHide(EXPORT);
+        exported();
+      }));
+      document.getElementById("copy-text").addEventListener("click", () => copyText(shadowOut))
+      S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
+
+    })();
+  </script>
+</body>
+
+</html>
