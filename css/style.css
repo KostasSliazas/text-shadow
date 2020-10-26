@@ -34,13 +34,27 @@ input[type=color] {
     padding: 0;
     border: 4px solid #eee;
     box-sizing: border-box;
-    width: 100px
 }
 
 .color {
-    text-align: right
+    text-align: right;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    min-height: 48px;
+    margin: auto;
 }
-
+.color label{
+    position: absolute;
+    z-index: 1;
+}
+.color input{
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
 .flexrow,
 fieldset {
     font-size: 12px
@@ -53,7 +67,7 @@ fieldset {
     flex-wrap: wrap;
     margin: 0;
     width: 100%;
-    padding: 0
+    padding: 0;
 }
 
 .seper {
@@ -126,7 +140,9 @@ input[type=number] {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .hidden {
@@ -203,5 +219,9 @@ input[type=number] {
         display: flex;
         text-align: left;
         flex-direction: column;
+    }
+
+    .export {
+        width: 90%;
     }
 }
