@@ -33,7 +33,7 @@
           <fieldset id="direction1">
             <legend>X</legend>
             <label for="left">left
-              <input id="left" type="radio" value="-1" name="direction1" checked=""></label>
+              <input id="left" type="radio" value="-1" name="direction1" checked></label>
             <label for="right">right
               <input id="right" type="radio" value="1" name="direction1"></label>
             <label for="none1">none
@@ -42,7 +42,7 @@
           <fieldset id="direction2">
             <legend>Y</legend>
             <label for="top">top
-              <input id="top" type="radio" value="-1" name="direction2" checked=""></label>
+              <input id="top" type="radio" value="-1" name="direction2" checked></label>
             <label for="bottom">bottom
               <input id="bottom" type="radio" value="1" name="direction2"></label>
             <label for="none">none
@@ -61,8 +61,8 @@
       <button class="nudes button">Show me code</button>
 
       <div class="include">
-        <label for="bgrnd">including background<input id="bgrnd" type="checkbox"></label>
-        <label for="color">including text color <input id="color" type="checkbox"></label>
+        <label for="bgrnd">include background<input id="bgrnd" type="checkbox" checked></label>
+        <label for="color">include text color <input id="color" type="checkbox" checked></label>
       </div>
     </div>
   </div>
@@ -77,13 +77,12 @@
     ;
     (function () {
       //get sample text for changing text-shadow
-      const S_TEXT = document.getElementById("sample-text");
+      const S_TEXT = document.querySelector("#sample-text");
       const EXPORT = document.querySelector(".export");
-      // const HEX = [1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
-      let color1 = document.getElementById("color1");
-      let color2 = document.getElementById("color2");
-      let color3 = document.getElementById("color3");
-      let shadowOut = document.getElementById("shadow-out");
+      let color1 = document.querySelector("#color1");
+      let color2 = document.querySelector("#color2");
+      let color3 = document.querySelector("#color3");
+      let shadowOut = document.querySelector("#shadow-out");
       S_TEXT.style.background = color1.value;
       S_TEXT.style.color = color2.value;
 
