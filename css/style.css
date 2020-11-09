@@ -21,12 +21,13 @@ body {
     font-size: 48px;
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100px;
-    border: 1px dashed #aaa;
+    border: 1px solid #aaa;
     background: #aaa;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    border-bottom: 0;
 }
 
 input[type=color] {
@@ -220,7 +221,6 @@ button.button {
     cursor: pointer;
     line-height: 1;
     padding: 0.625em;
-    text-transform: full-width
 }
 
 .input-value:hover,
