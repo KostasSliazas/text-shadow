@@ -98,19 +98,6 @@
       };
       document.addEventListener("click", load);
 
-      function load(e) {
-        const targ = e.target;
-        if (targ.dataset.bind) {
-          let svalue = targ.parentElement.getElementsByTagName("input")[0];
-          input.value = svalue.value;
-          if (targ.dataset.bind === "decreaseQty") {
-            svalue.value = input.decraise();
-          }
-          if (targ.dataset.bind === "increaseQty") {
-            svalue.value = input.increase();
-          }
-        }
-      }
       //get sample text for changing text-shadow
       const S_TEXT = document.querySelector("#sample-text");
       const EXPORT = document.querySelector(".export");
@@ -187,8 +174,22 @@
         copyText(shadowOut);
 
       })
+      
+      function load(e) {
+        const targ = e.target;
+        if (targ.dataset.bind) {
+          let svalue = targ.parentElement.getElementsByTagName("input")[0];
+          input.value = svalue.value;
+          if (targ.dataset.bind === "decreaseQty") {
+            svalue.value = input.decraise();
+          }
+          if (targ.dataset.bind === "increaseQty") {
+            svalue.value = input.increase();
+          }
+        }
+        S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
+      }
       S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
-
     })();
   </script>
 </body>
