@@ -52,11 +52,21 @@
       </fieldset>
       <fieldset>
         <legend>Number of shadows</legend>
-        <input id="num" type="number" value="10" min="1" max="100">
+        <div class="input-group">
+          <button class="button button--decrease" data-bind="decreaseQty">−</button>
+          <label for="num">input</label>
+          <input type="number" name="qty" id="num" class="input-value" value="6" min="0" max="99">
+          <button class="button button--increase" data-bind="increaseQty">+</button>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Number of blurriness</legend>
-        <input id="blur" type="number" value="0" min="0" max="100">
+        <div class="input-group">
+          <button class="button button--decrease" data-bind="decreaseQty">−</button>
+          <label for="blur">input</label>
+          <input type="number" name="qty" id="blur" class="input-value" value="6" min="0" max="99">
+          <button class="button button--increase" data-bind="increaseQty">+</button>
+        </div>
       </fieldset>
       <button class="nudes button">Show me code</button>
 
@@ -76,6 +86,32 @@
   <script>
     ;
     (function () {
+       "use strict";
+      const input = {
+        value: 0,
+        increase: function () {
+          return this.value >= 0 && this.value < 99 && ++this.value || 0;
+        },
+        decraise: function () {
+          return this.value <= 99 && this.value > 0 && --this.value || 0;
+        }
+      };
+      document.addEventListener("click", load);
+
+      function load(e) {
+        const targ = e.target;
+        if (targ.dataset.bind) {
+          let svalue = targ.parentElement.getElementsByTagName("input")[0];
+          input.value = svalue.value;
+          if (targ.dataset.bind === "decreaseQty") {
+            svalue.value = input.decraise();
+          }
+          if (targ.dataset.bind === "increaseQty") {
+            svalue.value = input.increase();
+          }
+        }
+        S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+      }
       //get sample text for changing text-shadow
       const S_TEXT = document.querySelector("#sample-text");
       const EXPORT = document.querySelector(".export");
@@ -148,7 +184,10 @@
         toggleHide(EXPORT);
         exported();
       }));
-      document.getElementById("copy-text").addEventListener("click", () => copyText(shadowOut))
+      document.getElementById("copy-text").addEventListener("click", () => {
+        copyText(shadowOut);
+      
+      })
       S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
 
     })();

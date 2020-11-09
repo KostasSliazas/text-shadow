@@ -44,13 +44,15 @@ input[type=color] {
     height: 100%;
     min-height: 48px;
 }
-.color label{
+
+.color label {
     width: 100%;
     text-align: center;
     margin: auto;
     line-height: 48px;
 }
-.color input{
+
+.color input {
     position: absolute;
     margin: 0;
     width: 100%;
@@ -59,6 +61,7 @@ input[type=color] {
     z-index: -1;
     height: 100%;
 }
+
 .flexrow,
 fieldset {
     font-size: 12px
@@ -137,10 +140,9 @@ input[type=number] {
 }
 
 .export {
-    display: flex;
     min-width: 50%;
-    height: 50%;
-    background: #aaa;
+    background: #fafafa;
+    min-height: 300px;
     border: 10px solid #777;
     position: fixed;
     top: 50%;
@@ -148,10 +150,20 @@ input[type=number] {
     width: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    text-align: center;
+}
+
+.inline {
+    position: relative;
+    padding: 1em;
 }
 
 .hidden {
     display: none
+}
+
+.nudes.bottom.button {
+    padding: 1em;
 }
 
 .bottom {
@@ -168,51 +180,73 @@ input[type=number] {
     font-size: 0
 }
 
-.inline {
-    margin: 48px auto
-}
-
-.button {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    padding: 12px 24px;
-    border: 1px solid #63096a;
-    border-radius: 8px;
-    background: #bb10c8;
-    background: -webkit-gradient(linear, left top, left bottom, from(#bb10c8), to(#63096a));
-    background: -moz-linear-gradient(top, #bb10c8, #63096a);
-    background: linear-gradient(to bottom, #bb10c8, #63096a);
-    -webkit-box-shadow: #e013f0 0 0 4px 0;
-    -moz-box-shadow: #e013f0 0 0 4px 0;
-    box-shadow: #e013f0 0 0 4px 0;
-    text-shadow: #3b053f 1px 1px 1px;
-    font: 700 16px arial;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer
-}
-
-.button:focus,
-.button:hover {
-    border: 1px solid #750a7d;
-    background: #e013f0;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e013f0), to(#770b7f));
-    background: -moz-linear-gradient(top, #e013f0, #770b7f);
-    background: linear-gradient(to bottom, #e013f0, #770b7f);
-    color: #fff;
-    text-decoration: none
-}
-
-.button:active {
-    background: #63096a;
-    background: -webkit-gradient(linear, left top, left bottom, from(#63096a), to(#63096a));
-    background: -moz-linear-gradient(top, #63096a, #63096a);
-    background: linear-gradient(to bottom, #63096a, #63096a)
-}
-
 .center {
     display: inline
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 1em auto
+}
+
+.input-group label {
+    display: none
+}
+
+.input-value {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    text-align: center;
+}
+
+button.button {
+    min-width: 4ch;
+    z-index: 1;
+    position: relative;
+    box-shadow: inset 0 1px 0 0 #fff;
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color: #f9f9f9;
+    text-shadow: 0 1px 0 #fff;
+    margin: 0;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.625em;
+    text-transform: full-width
+}
+
+.input-value:hover,
+button.button:hover {
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color: #e9e9e9
+}
+
+.button.button--increase {
+    border-left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.button.button--decrease {
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.button--decrease,
+.button--increase,
+.input-value {
+    font-size: 1em;
+    color: #555;
+    border: 1px solid #dcdcdc;
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 1;
+    padding: .25em;
+    max-width: 4ch;
+    text-transform: full-width;
+    font-weight: 700;
+    margin: 0;
 }
 
 @media screen and (max-width: 480px) {
