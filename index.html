@@ -16,15 +16,15 @@
         <legend>Colors</legend>
         <div class="color">
           <label for="color1">background
-            <input type="color" value="#CE006E" id="color1"></label>
+            <input type="color" value="#FDB913" id="color1"></label>
         </div>
         <div class="color">
           <label for="color2">Text
-            <input type="color" value="#FF84B0" id="color2"></label>
+            <input type="color" value="#006A44" id="color2"></label>
         </div>
         <div class="color">
           <label for="color3">Shadow
-            <input type="color" value="#333333" id="color3"></label>
+            <input type="color" value="#C1272D" id="color3"></label>
         </div>
       </fieldset>
       <fieldset>
@@ -53,29 +53,41 @@
       <fieldset>
         <legend>Number of shadows</legend>
         <div class="input-group">
-          <button class="button button--decrease" data-bind="decreaseQty">−</button>
+          <button class="button button--decrease" data-bind="decrease">−</button>
           <label for="num">input</label>
           <input type="number" name="qty" id="num" class="input-value" value="10" min="0" max="99">
-          <button class="button button--increase" data-bind="increaseQty">+</button>
+          <button class="button button--increase" data-bind="increase">+</button>
         </div>
       </fieldset>
       <fieldset>
         <legend>Number of blurriness</legend>
         <div class="input-group">
-          <button class="button button--decrease" data-bind="decreaseQty">−</button>
+          <button class="button button--decrease" data-bind="decrease">−</button>
           <label for="blur">input</label>
-          <input type="number" name="qty" id="blur" class="input-value" value="1" min="0" max="99">
-          <button class="button button--increase" data-bind="increaseQty">+</button>
+          <input type="number" name="qty" id="blur" class="input-value" value="0" min="0" max="99">
+          <button class="button button--increase" data-bind="increase">+</button>
         </div>
+      </fieldset>
+      <fieldset>
+        <legend>Other</legend>
+        <label for="colors">Randomize colors
+          <input id="colors" type="checkbox" name="colors" checked></label>
+        <label for="shadows">Randomize shadows
+          <input id="shadows" type="checkbox" name="shadows"></label>
+        <label for="fadeout">Fadeout shadows RGBA
+          <input id="fadeout" type="checkbox" name="fadeout" checked></label>
       </fieldset>
       <button class="nudes button">Show me code</button>
 
       <div class="include">
-        <label for="bgrnd">include background<input id="bgrnd" type="checkbox" checked></label>
-        <label for="color">include text color <input id="color" type="checkbox" checked></label>
+        <label for="bgrnd">include background<input id="bgrnd" type="checkbox"></label>
+        <label for="color">include text color <input id="color" type="checkbox"></label>
       </div>
     </div>
   </div>
+  <footer>
+    <p>by Kostas Šliažas</p>
+  </footer>
   <div class="export hidden">
     <div class="inline">
       <label for="shadow-out" class="center">CSS</label>
@@ -96,7 +108,6 @@
           return this.value <= 99 && this.value > 0 && --this.value || 0;
         }
       };
-      document.addEventListener("click", load);
 
       //get sample text for changing text-shadow
       const S_TEXT = document.querySelector("#sample-text");
@@ -122,29 +133,56 @@
         document.execCommand("copy");
       }
 
+      //get all checked values from radio and checkbox type
       function getCheckedValues() {
-        return document.querySelectorAll("input:checked");
+        return [...document.querySelectorAll("input[type=radio]:checked,input[type=checkbox]")];
       }
 
       function toggleHide(elem) {
         elem.classList.toggle("hidden")
       }
 
+      function hexToRgbA(hex, alpha) {
+        var r = parseInt(hex.slice(1, 3), 16),
+          g = parseInt(hex.slice(3, 5), 16),
+          b = parseInt(hex.slice(5, 7), 16);
+
+        if (alpha) {
+          return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+        } else {
+          return "rgb(" + r + ", " + g + ", " + b + ")";
+        }
+      }
+
       function makeTextString(count, blur) {
         let color = color3.value || "#000";
-        let [horizontal, vertical] = [...getCheckedValues()];
-        let tempH = Number(horizontal.value);
-        let tempV = Number(vertical.value);
+        const elems = getCheckedValues();
+        let tempH = Number(elems[0].value);
+        let tempV = Number(elems[1].value);
         let string = "";
+        let fade = 1;
+        let rgb = color;
+        let left = count - 10;
+        let tem = 10;
         if (tempH === 0 && tempV === 0) return string = "";
-
         for (let i = 0; i < count; i++) {
           if (i) string += ",";
+          if (elems[2].checked) elems[4].checked ? (rgb = getRandomRgb()) : (color = getRandomRgb());
+          if (elems[3].checked) tempH += Math.floor(Math.random() * 3), tempV += Math.floor(Math.random() * 3);
+          if (elems[4].checked) {
+            color = hexToRgbA(rgb, tem / 10);
+            if (left < i) tem--;
+          };
           string += stringMake(tempH, tempV, blur, color);
-          if (tempH !== 0)(tempH > 0) ? ++tempH : --tempH;
-          if (tempV !== 0)(tempV > 0) ? ++tempV : --tempV;
+          if (tempH !== 0) tempH > 0 ? ++tempH : --tempH;
+          if (tempV !== 0) tempV > 0 ? ++tempV : --tempV;
+          fade--;
         }
         return string;
+      }
+
+      function getRandomRgb() {
+        return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
       }
 
       //make string of shadows
@@ -154,8 +192,8 @@
 
       function exported() {
         let string = "text-shadow: " + makeTextString(getNumberOfShadows(), getNumberOfBlur()) + ";"
-        if (getCheckedValues()[2]) string += "background: " + color1.value + ";";
-        if (getCheckedValues()[3]) string += "color: " + color2.value + ";";
+        if (getCheckedValues()[5].checked) string += "background: " + color1.value + ";";
+        if (getCheckedValues()[6].checked) string += "color: " + color2.value + ";";
         shadowOut.value = string;
       }
 
@@ -172,24 +210,26 @@
       }));
       document.getElementById("copy-text").addEventListener("click", () => {
         copyText(shadowOut);
-
       })
-      
+
       function load(e) {
         const targ = e.target;
         if (targ.dataset.bind) {
           let svalue = targ.parentElement.getElementsByTagName("input")[0];
           input.value = svalue.value;
-          if (targ.dataset.bind === "decreaseQty") {
+          if (targ.dataset.bind === "decrease") {
             svalue.value = input.decraise();
           }
-          if (targ.dataset.bind === "increaseQty") {
+          if (targ.dataset.bind === "increase") {
             svalue.value = input.increase();
           }
+          S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
         }
-        S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
+        return;
       }
+      document.addEventListener("click", load);
       S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur());
+
     })();
   </script>
 </body>
