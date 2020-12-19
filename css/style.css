@@ -124,7 +124,7 @@ input {
 label {
     line-height: 2;
     text-align: right;
-    display: block
+    display: block;
 }
 
 input[type=checkbox],
@@ -184,10 +184,6 @@ input[type=number] {
     margin: 0 auto;
     left: 0;
     right: 0
-}
-
-:not(legend, label) {
-    font-size: 0
 }
 
 .center {
