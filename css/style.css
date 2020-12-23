@@ -40,12 +40,13 @@ input[type=color] {
 .color,
 .color input {
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 .color {
     position: relative;
     display: flex;
+    flex-grow: 1;
     z-index: 1;
     min-height: 48px
 }
