@@ -99,7 +99,7 @@
   }
 
   function exported () {
-    let string = 'text-shadow: ' + sampleText.style.textShadow + ';'
+    let string = 'text-shadow: ' + (sampleText.style.textShadow || 'none') + ';'
     if (getCheckedValues()[5].checked) string += 'background: ' + color1.value + ';'
     if (getCheckedValues()[6].checked) string += 'color: ' + color2.value + ';'
     shadowOut.value = string
