@@ -1,6 +1,8 @@
 ;
 (function () {
   'use strict'
+
+  // incrise decrise methods
   const input = {
     value: 0,
     increase: function () {
@@ -12,14 +14,17 @@
   }
 
   // get sample text for changing text-shadow
-  const S_TEXT = document.querySelector('#sample-text')
-  const EXPORT = document.querySelector('.export')
+  const sampleText = document.querySelector('#sample-text')
+  const exportCode = document.querySelector('.export')
   const color1 = document.querySelector('#color1')
   const color2 = document.querySelector('#color2')
   const color3 = document.querySelector('#color3')
   const shadowOut = document.querySelector('#shadow-out')
-  S_TEXT.style.background = color1.value
-  S_TEXT.style.color = color2.value
+
+  // set value for background
+  sampleText.style.background = color1.value
+  // set value for color
+  sampleText.style.color = color2.value
 
   function getNumberOfShadows () {
     return Number(document.querySelector('#num').value)
@@ -29,15 +34,15 @@
     return Number(document.querySelector('#blur').value)
   }
 
+  // get all checked values from radio and checkbox type
+  function getCheckedValues () {
+    return [...document.querySelectorAll('input[type=radio]:checked,input[type=checkbox]')]
+  }
+
   function copyText (element) {
     element.select()
     element.setSelectionRange(0, 99999)
     document.execCommand('copy')
-  }
-
-  // get all checked values from radio and checkbox type
-  function getCheckedValues () {
-    return [...document.querySelectorAll('input[type=radio]:checked,input[type=checkbox]')]
   }
 
   function toggleHide (elem) {
@@ -94,23 +99,27 @@
   }
 
   function exported () {
-    let string = 'text-shadow: ' + S_TEXT.style.textShadow + ';'
+    let string = 'text-shadow: ' + sampleText.style.textShadow + ';'
     if (getCheckedValues()[5].checked) string += 'background: ' + color1.value + ';'
     if (getCheckedValues()[6].checked) string += 'color: ' + color2.value + ';'
     shadowOut.value = string
   }
 
-  document.addEventListener('change', () => {
+  document.addEventListener('change', (e) => {
+    if (e.target.type !== 'checkbox') {
     // add text-shadow to element
-    S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+      sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+    } else return false
   })
 
-  color1.addEventListener('input', (e) => (S_TEXT.style.background = e.target.value))
-  color2.addEventListener('input', (e) => (S_TEXT.style.color = e.target.value))
+  color1.addEventListener('input', (e) => (sampleText.style.background = e.target.value))
+  color2.addEventListener('input', (e) => (sampleText.style.color = e.target.value))
+
   document.querySelectorAll('.nudes').forEach((e) => e.addEventListener('click', () => {
-    toggleHide(EXPORT)
+    toggleHide(exportCode)
     exported()
   }))
+
   document.getElementById('copy-text').addEventListener('click', () => {
     copyText(shadowOut)
   })
@@ -126,9 +135,10 @@
       if (targ.dataset.bind === 'increase') {
         svalue.value = input.increase()
       }
-      S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+      sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
     }
   }
+
   document.addEventListener('click', load)
-  S_TEXT.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+  sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
 })()
