@@ -9,9 +9,9 @@ body {
     max-width: 600px;
     margin: 0 auto;
     box-shadow: 0 0 10px #777;
-    text-transform: lowercase;
     font-size: 13px;
     border: 10px solid #fff;
+    background: #fff;
 }
 
 #sample-text {
@@ -81,6 +81,7 @@ fieldset {
 }
 
 .seper {
+    text-transform: lowercase;
     display: grid;
     background: #fafafa;
     border: 1px solid #aaa;
@@ -253,10 +254,6 @@ button.button:hover {
 }
 
 footer p {
-    margin: 1em 0 0;
-    padding: 0;
-    line-height: 2;
-    font-size: 10px;
     text-align: center
 }
 
