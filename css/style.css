@@ -154,21 +154,19 @@ input[type=number] {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    min-width: 50%;
     background: #fafafa;
-    min-height: 300px;
     border: 10px solid #777;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
     z-index: 1;
-    text-align: center
+    text-align: center;
 }
 
 .inline {
     position: relative;
+    display: flex;
     padding: 1em
 }
 
@@ -185,7 +183,6 @@ input[type=number] {
     position: absolute;
     bottom: 12px;
     text-align: center;
-    width: 90%;
     margin: 0 auto;
     left: 0;
     right: 0
