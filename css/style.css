@@ -2,17 +2,16 @@ body {
     margin: 0;
     color: #444;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(0deg, #fff, #eaeaea) fixed
+    background: #eee;
 }
 
 #main {
     max-width: 600px;
-    margin: 24px auto;
-    box-shadow: 0 0 10px #333;
+    margin: 0 auto;
+    box-shadow: 0 0 10px #777;
     text-transform: lowercase;
     font-size: 13px;
     border: 10px solid #fff;
-    border-radius: 10px
 }
 
 #sample-text {
@@ -264,7 +263,8 @@ footer p {
 footer {
     display: block;
     margin: 0 auto;
-    width: 100%
+    text-transform: initial;
+    width: 100%;
 }
 
 @media screen and (max-width:480px) {

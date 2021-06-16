@@ -59,7 +59,7 @@
         <div class="input-group">
           <button class="button button--decrease" data-bind="decrease">−</button>
           <label for="num">input</label>
-          <input type="number" name="qty" id="num" class="input-value" value="10" min="0" max="99">
+          <input type="number" name="qty" id="num" class="input-value" value="10" min="1" max="99">
           <button class="button button--increase" data-bind="increase">+</button>
         </div>
       </fieldset>
@@ -82,16 +82,18 @@
           <input id="fadeout" type="checkbox" name="fadeout" checked></label>
       </fieldset>
       <button class="nudes button">Show me code</button>
-
+      <fieldset>
+        <legend>Export options</legend>
       <div class="include">
         <label for="bgrnd">include background<input id="bgrnd" type="checkbox"></label>
         <label for="color">include text color <input id="color" type="checkbox"></label>
       </div>
+    </fieldset>
     </div>
+    <footer>
+      <p>by Kostas Šliažas</p>
+    </footer>
   </div>
-  <footer>
-    <p>by Kostas Šliažas</p>
-  </footer>
   <div class="export hidden">
     <div class="inline">
       <label for="shadow-out" class="center">CSS</label>
