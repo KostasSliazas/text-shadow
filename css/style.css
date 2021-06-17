@@ -265,13 +265,13 @@ button.button:hover {
 }
 
 footer p {
-    text-align: center
+    text-align: right;
+    margin: 0;
 }
 
 footer {
     display: block;
     margin: 0 auto;
-    text-transform: initial;
     width: 100%;
 }
 
