@@ -73,7 +73,9 @@
     if (tempH === 0 && tempV === 0) return (string = '')
     for (let i = 0; i < count; i++) {
       if (i) string += ','
-      if (elems[2].checked) { elems[4].checked ? (rgb = getRandomRgb()) : (color = getRandomRgb()) }
+      if (elems[2].checked) {
+        elems[4].checked ? (rgb = getRandomRgb()) : (color = getRandomRgb())
+      }
       if (elems[3].checked) {
         tempH += Math.floor(Math.random() * 3)
         tempV += Math.floor(Math.random() * 3)
@@ -107,11 +109,12 @@
 
   document.addEventListener('input', (e) => {
     e.preventDefault()
-    if (e.target.type !== 'checkbox' || e.target.type !== 'color') {
-    // add text-shadow to element
-      sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+    if (e.target.type === 'checkbox' || e.target.type === 'color' || e.target.value.length > 2) {
+      return false
+    } else {
       e.stopImmediatePropagation()
-    } else return false
+      sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+    }
   })
 
   color1.addEventListener('input', (e) => (sampleText.style.background = e.target.value))
