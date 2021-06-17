@@ -159,9 +159,21 @@ input[type=number] {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 1;
     text-align: center;
+}
+
+.export::before {
+    content: "";
+    display: block;
+    width: 200vw;
+    height: 200vh;
+    position: fixed;
+    top: -50vh;
+    left:-50vw;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
 .inline {
