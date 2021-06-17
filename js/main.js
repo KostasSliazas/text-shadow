@@ -107,18 +107,25 @@
     shadowOut.value = string
   }
 
-  document.addEventListener('input', (e) => {
-    e.preventDefault()
-    if (e.target.type === 'checkbox' || e.target.type === 'color' || e.target.value.length > 2) {
-      return false
+  function checkValidation (a) {
+    if (a.value.length < 3) {
+      return true
     } else {
-      e.stopImmediatePropagation()
+      return false
+    }
+  }
+
+  document.addEventListener('input', (e) => {
+    if (e.target.value.indexOf('#') === -1 && checkValidation(e.target) && e.target.type !== 'checkbox') {
       sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
+    } else {
+      return false
     }
   })
 
   color1.addEventListener('input', (e) => (sampleText.style.background = e.target.value))
   color2.addEventListener('input', (e) => (sampleText.style.color = e.target.value))
+  color3.addEventListener('input', (e) => { sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur()) })
 
   document.querySelectorAll('.nudes').forEach((e) => e.addEventListener('click', () => {
     toggleHide(exportCode)
