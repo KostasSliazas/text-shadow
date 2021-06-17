@@ -187,7 +187,8 @@ input[type=number] {
     display: none
 }
 
-.nudes.bottom.button {
+.nudes {
+    order: 1;
     padding: 1em
 }
 
@@ -230,7 +231,7 @@ button.button {
     border-radius: 3px;
     cursor: pointer;
     line-height: 1;
-    padding: .625em
+    padding: .625em;
 }
 
 .input-value:hover,
