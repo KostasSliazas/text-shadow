@@ -106,7 +106,7 @@
   }
 
   document.addEventListener('change', (e) => {
-    if (e.target.type !== 'checkbox') {
+    if (e.target.type !== 'checkbox' && e.target.type !== 'color') {
     // add text-shadow to element
       sampleText.style.textShadow = makeTextString(getNumberOfShadows(), getNumberOfBlur())
     } else return false
