@@ -71,22 +71,24 @@
     const left = count - 10
     let tem = 10
     if (tempH === 0 && tempV === 0) return (string = '')
-    for (let i = 0; i < count; i++) {
-      if (i) string += ','
-      if (elems[2].checked) {
-        elems[4].checked ? (rgb = getRandomRgb()) : (color = getRandomRgb())
+    if (count < 100) {
+      for (let i = 0; i < count; i++) {
+        if (i) string += ','
+        if (elems[2].checked) {
+          elems[4].checked ? (rgb = getRandomRgb()) : (color = getRandomRgb())
+        }
+        if (elems[3].checked) {
+          tempH += Math.floor(Math.random() * 3)
+          tempV += Math.floor(Math.random() * 3)
+        }
+        if (elems[4].checked) {
+          color = hexToRgbA(rgb, tem / 10)
+          if (left < i) tem--
+        };
+        string += stringMake(tempH, tempV, blur, color)
+        if (tempH !== 0) tempH > 0 ? ++tempH : --tempH
+        if (tempV !== 0) tempV > 0 ? ++tempV : --tempV
       }
-      if (elems[3].checked) {
-        tempH += Math.floor(Math.random() * 3)
-        tempV += Math.floor(Math.random() * 3)
-      }
-      if (elems[4].checked) {
-        color = hexToRgbA(rgb, tem / 10)
-        if (left < i) tem--
-      };
-      string += stringMake(tempH, tempV, blur, color)
-      if (tempH !== 0) tempH > 0 ? ++tempH : --tempH
-      if (tempV !== 0) tempV > 0 ? ++tempV : --tempV
     }
     return string
   }
