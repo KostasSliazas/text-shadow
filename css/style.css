@@ -151,7 +151,7 @@ label {
 }
 
 input[type=number] {
-    width: 6ch
+    max-width: 6ch
 }
 
 .export {
@@ -263,7 +263,6 @@ button.button:hover {
     font-family: Arial, Helvetica, sans-serif;
     flex: 1;
     padding: .25em;
-    max-width: 4ch;
     text-transform: full-width;
     font-weight: 700;
     margin: 0
