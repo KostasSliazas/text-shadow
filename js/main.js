@@ -101,10 +101,11 @@
   }
 
   function exported () {
-    let string = sampleText.style.textShadow ? 'text-shadow: ' + sampleText.style.textShadow + ';' : ''
+    let string = '.txt-shadow {\n'
+    string += sampleText.style.textShadow ? 'text-shadow: ' + sampleText.style.textShadow + ';' : ''
     if (getCheckedValues()[5].checked) string += '\nbackground: ' + color1.value + ';'
     if (getCheckedValues()[6].checked) string += '\ncolor: ' + color2.value + ';'
-    shadowOut.value = string
+    shadowOut.value = string + '\n}'
   }
 
   function checkValidation (a) {
