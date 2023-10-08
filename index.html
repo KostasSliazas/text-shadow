@@ -1,107 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Text shadow maker" />
+    <meta name="keywords" content="text-shadow generator,css text effects,text styling tool,custom text shadows,css shadow creator,web design,text shadow,css text shadow generator" />
+    <meta name="author" content="Kostas Šliažas" />
+    <title>Text shadow</title>
+    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text shadow</title>
-  <link rel="stylesheet" href="css/style.min.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-</head>
-
-<body>
-  <div id="main">
-    <div id="sample-text">text-shadow maker online<br> SIMPLE</div>
-    <div class="seper">
-      <fieldset>
-        <legend>Colors</legend>
-        <div class="color">
-          <label for="color1">background
-            <input type="color" value="#FDB913" id="color1"></label>
-        </div>
-        <div class="color">
-          <label for="color2">Text
-            <input type="color" value="#006A44" id="color2"></label>
-        </div>
-        <div class="color">
-          <label for="color3">Shadow
-            <input type="color" value="#C1272D" id="color3"></label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Shadow positions</legend>
-        <div class="radios">
-          <fieldset id="direction1">
-            <legend>X</legend>
-            <label for="left">left
-              <input id="left" type="radio" value="-1" name="direction1" checked></label>
-            <label for="right">right
-              <input id="right" type="radio" value="1" name="direction1"></label>
-            <label for="none1">none
-              <input id="none1" type="radio" value="0" name="direction1"></label>
-          </fieldset>
-          <fieldset id="direction2">
-            <legend>Y</legend>
-            <label for="top">top
-              <input id="top" type="radio" value="-1" name="direction2" checked></label>
-            <label for="bottom">bottom
-              <input id="bottom" type="radio" value="1" name="direction2"></label>
-            <label for="none">none
-              <input id="none" type="radio" value="0" name="direction2"></label>
-          </fieldset>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Number of shadows</legend>
-        <div class="input-group">
-          <button class="button button--decrease" data-bind="decrease">−</button>
-          <label for="num">input</label>
-          <input type="number" name="qty" id="num" class="input-value" value="10" min="1" max="99">
-          <button class="button button--increase" data-bind="increase">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Number of blurriness</legend>
-        <div class="input-group">
-          <button class="button button--decrease" data-bind="decrease">−</button>
-          <label for="blur">input</label>
-          <input type="number" name="qty" id="blur" class="input-value" value="0" min="0" max="99">
-          <button class="button button--increase" data-bind="increase">+</button>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Other</legend>
-        <label for="colors">Randomize colors
-          <input id="colors" type="checkbox" name="colors" checked></label>
-        <label for="shadows">Randomize shadows
-          <input id="shadows" type="checkbox" name="shadows" checked></label>
-        <label for="fadeout">Fadeout shadows RGBA
-          <input id="fadeout" type="checkbox" name="fadeout" checked></label>
-      </fieldset>
-      <button class="nudes button">Show me code</button>
-      <fieldset>
-        <legend>Export options</legend>
-        <div class="include">
-          <label for="bgrnd">include background<input id="bgrnd" type="checkbox" checked></label>
-          <label for="color">include text color <input id="color" type="checkbox" checked></label>
-        </div>
-      </fieldset>
+  <body>
+    <div id="main">
+      <div id="sample-text">text shadow maker</div>
+      <div class="seper">
+        <fieldset>
+          <legend>Colors</legend>
+          <div class="color">
+            <label for="color1">background <input type="color" value="#FDB913" id="color1" /></label>
+          </div>
+          <div class="color">
+            <label for="color2">Text <input type="color" value="#006A44" id="color2" /></label>
+          </div>
+          <div class="color">
+            <label for="color3">Shadow <input type="color" value="#C1272D" id="color3" /></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Shadow positions</legend>
+          <div class="radios">
+            <fieldset id="direction1">
+              <legend>X</legend>
+              <label for="left">left <input id="left" type="radio" value="-1" name="direction1" checked /></label>
+              <label for="right">right <input id="right" type="radio" value="1" name="direction1" /></label>
+              <label for="none1">none <input id="none1" type="radio" value="0" name="direction1" /></label>
+            </fieldset>
+            <fieldset id="direction2">
+              <legend>Y</legend>
+              <label for="top">top <input id="top" type="radio" value="-1" name="direction2" checked /></label>
+              <label for="bottom">bottom <input id="bottom" type="radio" value="1" name="direction2" /></label>
+              <label for="none">none <input id="none" type="radio" value="0" name="direction2" /></label>
+            </fieldset>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Number of shadows</legend>
+          <div class="input-group">
+            <button class="button button--decrease" data-bind="decrease">−</button>
+            <label for="num">input</label>
+            <input type="number" name="qty" id="num" class="input-value" value="7" min="1" max="99" />
+            <button class="button button--increase" data-bind="increase">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Number of blurriness</legend>
+          <div class="input-group">
+            <button class="button button--decrease" data-bind="decrease">−</button>
+            <label for="blur">input</label>
+            <input type="number" name="qty" id="blur" class="input-value" value="0" min="0" max="99" />
+            <button class="button button--increase" data-bind="increase">+</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Other</legend>
+          <label for="colors">Randomize colors <input id="colors" type="checkbox" name="colors" checked /></label>
+          <label for="shadows">Randomize shadows <input id="shadows" type="checkbox" name="shadows" checked /></label>
+          <label for="fadeout">Fadeout shadows RGBA <input id="fadeout" type="checkbox" name="fadeout" checked /></label>
+        </fieldset>
+        <button class="nudes button">Show me code</button>
+        <fieldset>
+          <legend>Export options</legend>
+          <div class="include">
+            <label for="bgrnd">include background<input id="bgrnd" type="checkbox" checked /></label>
+            <label for="color">include text color <input id="color" type="checkbox" checked /></label>
+          </div>
+        </fieldset>
+      </div>
+      <h1>Welcome to the TEXT SHADOW MAKER - CSS Generator!</h1>
+      <p>If you're looking to add some pizzazz to your website's text, you've come to the right place. With our Text Shadow CSS Generator, you can generate stunning text shadows that will make your content stand out like never before.</p>
+      <h2>How Does it Work?</h2>
+      <p>It's as easy as 1-2-3! You select the HTML element you want to style - whether it's a paragraph, an unordered list, or an ordered list. Then, you can customize your text shadow by adjusting parameters such as color, opacity, blur radius, and offsets. With our real-time preview, you can see the changes live as you tweak your settings.</p>
+      <h2>Why Use the Text Shadow CSS Generator?</h2>
+      <p>There are plenty of reasons to utilize our generator:</p>
+      <ul>
+        <li>Enhanced Typography: Text shadows can improve readability and add visual appeal to your content.</li>
+        <li>Easy Integration: You don't need to be a CSS expert - the generator does the heavy lifting for you.</li>
+        <li>Versatile Design Options: From subtle, professional shadows to bold and attention-grabbing effects, you have full creative control.</li>
+        <li>Time-Saving: Automate the process of generating text shadow CSS, allowing you to focus on other aspects of web design.</li>
+      </ul>
+      <h2>Get Started Today!</h2>
+      <p>Ready to unleash your creativity and generate text shadows like crazy? Give our Text Shadow CSS Generator a try and make your web content not just informative but visually stunning as well!</p>
+      <div class="text-shadow-example">
+        <p>Here's a sample of what you can achieve with our Text Shadow CSS Generator. Add a touch of magic to your text, and watch it come to life!</p>
+      </div>
+      <footer>
+        <p>by Kostas Šliažas</p>
+      </footer>
     </div>
-    <footer>
-      <p>by Kostas Šliažas</p>
-    </footer>
-  </div>
-  <div class="export hidden">
-    <div class="inline">
-      <textarea id="shadow-out" rows="7" cols="30"></textarea>
-      <button class="button" id="copy-text">📋 COPY</button>
+    <div class="export hidden">
+      <div class="inline">
+        <textarea id="shadow-out" rows="7" cols="30"></textarea>
+        <button class="button" id="copy-text">📋 COPY</button>
+      </div>
+      <button class="nudes bottom button">Hide this</button>
     </div>
-    <button class="nudes bottom button">Hide this</button>
-  </div>
-  <script src="js/main.min.js"></script>
-</body>
-
+    <script src="js/main.min.js"></script>
+  </body>
 </html>
